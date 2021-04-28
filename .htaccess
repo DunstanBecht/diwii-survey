@@ -1,0 +1,33 @@
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "index\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "colors\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "geometry\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "fonts\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+RewriteEngine on
+RewriteBase /
+
+RewriteCond %{HTTPS} !=on
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.+)$ index.php [QSA,L]
